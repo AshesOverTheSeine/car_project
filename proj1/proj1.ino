@@ -1,3 +1,5 @@
+#define half 7100
+
 // Pins controlling wheel 1
 int m1p1 = 5;  // Forward
 int m1p2 = 6;  // Backward
@@ -6,7 +8,7 @@ int m2p1 = 10;  // Forward
 int m2p2 = 11;  // Backward
 
 // The speed the wheels will turn at, between 0 and 255
-int speed = 50;
+int speed = 255;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -21,17 +23,33 @@ void loop() {
   
   // TODO: Get correct order of moves, fine-tune speed and timing
 
+  //180 degree turn
+  
+  right();
+  delay (half);
+  halt();
+  delay(1000);
+  right();
+  delay(half/4);
+  halt();
+  delay(1000);
+  right();
+  delay(half/4);
+  halt();
+  delay(1000);
+  right();
+  delay(half/4);
+  halt();
+  delay(1000);
+  right();
+  delay(half/4);
+  halt();
+  
+  delay (2000);
+  
   forward();
 
-  delay (2000);
-  
-  reverse();
-
-  delay (2000);
-  
-  left();
-
-  delay(1000);
+  delay(20000);
 
 }
 
@@ -44,25 +62,33 @@ void forward() {
 }
 
 // Sets the motors moving backward
-void backward() {
+void reverse() {
   analogWrite(m1p1, LOW);
   analogWrite(m1p2, speed);
   analogWrite(m2p1, LOW);
   analogWrite(m2p2, speed);
 }
 
-// Turn left (right?)
-void left() {
+// Turn right
+void right() {
   analogWrite(m1p1, speed);
   analogWrite(m1p2, LOW);
   analogWrite(m2p1, LOW);
   analogWrite(m2p2, speed);
 }
 
-// Turn right (left?)
-void right() {
+// Turn left
+void left() {
   analogWrite(m1p1, LOW);
   analogWrite(m1p2, speed);
   analogWrite(m2p1, speed);
   analogWrite(m2p2, LOW);
 }
+
+void halt() {
+  analogWrite(m1p1, LOW);
+  analogWrite(m1p2, LOW);
+  analogWrite(m2p1, speed);
+  analogWrite(m2p2, speed);
+}
+
