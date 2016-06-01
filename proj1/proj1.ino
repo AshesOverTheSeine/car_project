@@ -1,3 +1,4 @@
+// Time it takes to do a 180
 #define half 7100
 
 // Pins controlling wheel 1
@@ -25,7 +26,7 @@ void loop() {
 
   //180 degree turn
   
-  right();
+  reverse();
   delay (half);
   halt();
   delay(1000);
@@ -63,26 +64,26 @@ void forward() {
 
 // Sets the motors moving backward
 void reverse() {
-  analogWrite(m1p1, LOW);
-  analogWrite(m1p2, speed);
-  analogWrite(m2p1, LOW);
-  analogWrite(m2p2, speed);
-}
-
-// Turn right
-void right() {
   analogWrite(m1p1, speed);
   analogWrite(m1p2, LOW);
   analogWrite(m2p1, LOW);
   analogWrite(m2p2, speed);
 }
 
-// Turn left
-void left() {
+// Turn right
+void right() {
   analogWrite(m1p1, LOW);
   analogWrite(m1p2, speed);
   analogWrite(m2p1, speed);
   analogWrite(m2p2, LOW);
+}
+
+// Turn left
+void left() {
+  analogWrite(m1p1, LOW);
+  analogWrite(m1p2, speed);
+  analogWrite(m2p1, LOW);
+  analogWrite(m2p2, speed);
 }
 
 void halt() {
